@@ -3,7 +3,9 @@ const cors = require("cors");
 const http = require("http");
 const socketIO = require("socket.io");
 const cronJobs = require("./tasks/cronJobs");
+const path = require('path');
 require("dotenv").config();
+
 
 const app = express();
 const server = http.createServer(app);
@@ -34,6 +36,15 @@ app.use("/items", itemRoutes);
 app.use("/marketplace", marketplaceRoutes);
 app.use("/admin", adminRoutes);
 app.use("/games", gamesRoutes);
+
+//added lines start
+app.use(express.static(path.join(__dirname, 'client/dist')));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'client/dist', 'index.html'));
+});
+
+//added lines end
 
 // Start the games
 coinFlip(io);

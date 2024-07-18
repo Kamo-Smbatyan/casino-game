@@ -3,7 +3,8 @@
   "type": "module",
   "homepage": "/",
   "scripts": {
-    "dev": "vite"
+    "dev": "vite",
+    "build" : "vite build"
   },
   "dependencies": {
     "@react-oauth/google": "^0.12.1",
